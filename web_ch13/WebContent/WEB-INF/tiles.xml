@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+ 
+    <definition name="mainLayout" template="/jsp/common/layout.jsp">
+    <put-attribute name="title" value="메인 페이지" />
+    <put-attribute name="header" value="/jsp/common/header.jsp" />
+    <put-attribute name="side" value="/jsp/common/side.jsp" />
+    <put-attribute name="body" value="/jsp/main/main.jsp" />
+    <put-attribute name="footer" value="/jsp/common/footer.jsp" />
+    <put-attribute name="sticky_menu" value="/jsp/common/sticky_menu.jsp" />
+  </definition>
+  
+   
+  <definition name="memberForm" extends="mainLayout">
+    <put-attribute name="title" value="회원등록폼" />
+    <put-attribute name="body" value="/jsp/member/memberForm.jsp" />
+  </definition>
+  
+   <definition name="memberList" extends="mainLayout">
+    <put-attribute name="title" value="회원조회페이지" />
+    <put-attribute name="body" value="/jsp/member/memberList.jsp" />
+  </definition>
+
+</tiles-definitions>

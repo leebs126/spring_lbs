@@ -1,0 +1,50 @@
+<html>
+<head>
+  <title>도서정보 페이지</title>
+<script type="text/javascript" src="../jquery/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+function fn_process(){
+	$.ajax({
+		type:"post",
+		async:false,  //false인 경우 동기식으로 처리한다.
+		url:"http://localhost:8090/web_ch13/xml",
+		dataType:"xml",
+		success:function (xml,textStatus){
+			///alert(data);
+			$(xml).find("book").each(function(){  //book  엘리먼트를 검색한다.
+				var title=$(this).find("title").text();  //title 엘리먼트를 검색한다.
+				var writer=$(this).find("writer").text();
+				var image=$(this).find("image").text();
+				
+				
+				$("#bookInfo").append(
+						"<p>" +title+ "</p>" +
+						"<p>" +writer + "</p>"+
+						"<img src="+image + "   />"						
+						
+				);
+			});
+			
+			
+			
+		},
+		error:function(data,textStatus){
+			alert("에러가 발생했습니다.");ㅣ
+		},
+		complete:function(data,textStatus){
+		///	alert("작업을완료 했습니다");
+		}
+	});  //end ajax	
+		
+	
+	
+}
+
+</script>
+</head>
+<body>
+  <div id="bookInfo"></div>
+  <input type=button value="도서정보 요청"  onclick="fn_process()">
+   
+</body>
+</html>

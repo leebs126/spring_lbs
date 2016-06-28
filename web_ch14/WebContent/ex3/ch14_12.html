@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>ajax테스트</title>
+<script type="text/javascript" src="../jquery/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+function fn_process(){
+	$.ajax({
+		type:"GET",
+		async:false,  //false인 경우 동기식으로 처리한다.
+		url:"http://localhost:8090/web_ch13/ajaxTest1",
+		data: {param:"Hello,jquery"},
+		success:function (data,textStatus){
+			alert(data);
+			$('#message').append(data);
+			
+			
+		},
+		error:function(data,textStatus){
+			alert("에러가 발생했습니다.");ㅣ
+		},
+		complete:function(data,textStatus){
+			alert("작업을완료 했습니다");
+		}
+	});  //end ajax	
+}		
+</script>
+</head>
+<body>
+    <input type="button" value="전송하기" onClick="fn_process()" /><br><br>
+  <div id="message"></div>
+</body>
+</html>

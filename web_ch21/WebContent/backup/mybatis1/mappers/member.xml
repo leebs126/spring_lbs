@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memResult" type="com.spring.ex1.MemberBean">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="weight" column="weight" />
+		<result property="height" column="height" />
+		<result property="age" column="age" />
+	</resultMap>	
+
+	<select id="selectAllMemberList" resultMap="memResult"   >
+	    <![CDATA[
+			 select * from Member			
+		]]>
+	</select>
+
+
+</mapper>

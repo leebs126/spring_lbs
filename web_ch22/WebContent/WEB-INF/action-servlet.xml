@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+<!--         <property name="prefix" value="/WEB-INF/jweb/view/"/> -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+   <!-- DefaultAnnotationHandlerMapping는 클래스레벨에서 @RequestMapping을 처리하고  
+       AnnotationMethodHandlerAdapter는 메서드레벨에서 처리하는데 사용합니다 -->
+    <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+  <context:component-scan base-package="com.spring"/> <!-- 해당 패키지에서 자동으로 빈을 스캔한다. -->
+ 
+  
+</beans>
+

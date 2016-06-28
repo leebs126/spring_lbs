@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="writeResult" type="com.spring.ex4.board.vo.WriteBean">
+		<result property="msg_id" column="msg_id" />
+		<result property="group_id" column="group_id" />
+		<result property="parent_id" column="parent_id" />
+		<result property="author" column="author" />
+		<result property="email" column="email" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="passwd" column="passwd" />
+		<result property="writeday" column="writeday" />
+		<result property="imageFile" column="imageFile" />
+	</resultMap>	
+
+	<select id="selectWriteList" resultMap="writeResult"   parameterType="HashMap" >
+	    <![CDATA[
+			 select * from ( select rowNum  as recNum,
+										       group_id,
+										       parent_id,
+										       msg_id,
+										       author,
+										       email,
+										       title,
+										       passwd,
+										       writeday
+												  from (select  group_id,
+													            parent_id,
+													             msg_id,
+													             author,
+													             email,
+													             title,
+													             passwd,
+													             writeday
+											                       from t_board 
+											                        order by group_id desc ,parent_id asc,writeday desc)
+									    )                         
+					   where 				
+					   recNum between(#{chapter}-1)*100+(#{pageNum}-1)*10+1 and (#{chapter}-1)*100+#{pageNum}*10  		
+		]]>
+	</select>
+
+	 <select id="getNewMsgId" resultType="int"   >
+	    <![CDATA[
+			 SELECT  MAX(msg_id )+1 from t_board			
+		]]>
+	</select>
+	
+	<select id="getNewGroupId" resultType="int"   >
+	    <![CDATA[
+			 SELECT  MAX(group_id )+1 from t_board 			
+		]]>
+	</select>
+	<select id="getTotWrite" resultType="int"   >
+	    <![CDATA[
+			 SELECT  MAX(msg_id )+1 from t_board			
+		]]>
+	</select>
+	
+	<select id="getGroupIdList" resultType="writeBean" parameterType="int"    >
+	    <![CDATA[
+			 select group_id,
+				    parent_id,
+                    msg_id
+                     from t_board
+                     where 
+                     group_id=#{group_id}
+                     order by group_id desc ,parent_id,msg_id asc,writeday desc			
+		]]>
+	</select>
+	
+	<select id="selectWrite" resultType="writeBean" parameterType="int"   >
+	    <![CDATA[
+			 SELECT  * from t_board
+			 where 
+			 msg_id=#{msg_id}			
+		]]>
+	</select>
+	
+  <insert id="insertWrite"  parameterType="writeBean">
+  <![CDATA[
+    	INSERT INTO t_board (msg_id,
+    	                     group_id,
+    	                     parent_id, 
+    	                     author, 
+    	                     email, 
+    	                     title, 
+    	                     content, 
+    	                     passwd,
+    	                     imageFile) 
+      	values(#{msg_id},
+      	       #{group_id},
+      	       #{parent_id},
+      	       #{author},
+      	       #{email},
+      	       #{title},
+      	       #{content},
+      	       #{passwd},
+      	       #{imageFile})
+   ]]>      
+  </insert>
+  
+<insert id="insertReply"  parameterType="writeBean">
+  <![CDATA[
+    	INSERT INTO t_board (msg_id,
+    	                     group_id,
+    	                     parent_id, 
+    	                     author, 
+    	                     email, 
+    	                     title, 
+    	                     content, 
+    	                     passwd) 
+      	values(#{msg_id},
+      	       #{group_id},
+      	       #{parent_id},
+      	       #{author},
+      	       #{email},
+      	       #{title},
+      	       #{content},
+      	       #{passwd})
+      	       
+   ]]>      
+  </insert>  
+  <delete id="deleteWrite"  parameterType="int">
+  <![CDATA[
+  	delete from t_board
+  	where
+  	msg_id=#{msg_id}
+   ]]>      
+  </delete>
+   <update id="updateWrite"  parameterType="HashMap">
+    	update t_board
+    	<if test="author!='' and author!=null" >
+    	   set author=#{author}
+    	</if>
+    	<if test="title!='' and title!=null" >
+    	   set title=#{title}
+    	</if>
+    	<if test="content!='' and content!=null" >
+    	   set content=#{content}
+    	</if>
+    	<if test="email!='' and email!=null" >
+    	   set email=#{email}
+    	</if>
+    	<if test="passwd!='' and passwd!=null" >
+    	   set passwd=#{passwd}
+    	</if>
+    	<if test="imageFile!='' and imageFile!=null" >
+    	   set imageFile=#{imageFile}
+    	</if>
+    	where
+    	msg_id=#{msg_id}
+  </update> 
+    
+</mapper>

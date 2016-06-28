@@ -1,0 +1,27 @@
+package com.spring.common.locale;
+
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+/*@Controller("localeController")*/
+public class LocaleController {
+	/*@RequestMapping(value="/test/locale.do", method={RequestMethod.GET})*/
+	public String test(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session=request.getSession();
+		String locale=request.getParameter("locale");
+		if(locale ==null)
+			locale="ko";
+		
+		session.setAttribute("org.springframework.web.servlet.i18n.SessionLocaleResolver.LOCALE", new Locale(locale));
+		return "localeTest";
+	}
+
+}
+

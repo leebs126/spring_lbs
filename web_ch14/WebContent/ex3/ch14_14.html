@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>아이디 중복체크</title>
+<script type="text/javascript" src="../jquery/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+function fn_process(){
+	var _id=$("#t_id").val();
+	 $.ajax({
+		type:"post",
+		async:false,  
+		url:"http://localhost:8090/web_ch13/mem",
+		dataType:"text",
+		data: {id:_id},
+		success:function (data,textStatus){
+			alert(data);
+			$('#message').append(data);
+			
+			
+		},
+		error:function(data,textStatus){
+			alert("에러가 발생했습니다.");ㅣ
+		},
+		complete:function(data,textStatus){
+			//alert("작업을완료 했습니다");
+		}
+	});  //end ajax	 
+}		
+</script>
+</head>
+<body>
+     <input  type="text" id="t_id"/>
+    <input type="button" value="id 중복체크하기" onClick="fn_process()" /><br><br>
+  <div id="message"></div>
+</body>
+</html>

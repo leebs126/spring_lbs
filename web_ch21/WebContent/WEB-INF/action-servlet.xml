@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+ <beans>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<bean id="memberController" class="com.spring.ex4.member.controller.MemberControllerImpl">
+	 <property name="methodNameResolver">
+			<ref local="memberMethodNameResolver"/>
+		</property>
+		<property name="memberService" ref="memberService"/>
+	</bean>
+	
+	<bean id="memberMethodNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key="/member/listMember.do" >listMember</prop>
+           		<prop key="/member/insertMember.do" >insertMember</prop>
+           		<prop key="/member/deleteMember.do">deleteMember</prop>
+          		<prop key="/member/detailMember.do">detailMember</prop>
+          		<prop key="/member/memberForm.do">viewJSP</prop>
+		</props>
+		</property>
+	</bean>
+
+ 	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	        <property name="mappings">
+				<props>
+				<prop key="/member/*.do">memberController</prop>
+				</props>
+	        </property>
+	</bean>
+</beans>

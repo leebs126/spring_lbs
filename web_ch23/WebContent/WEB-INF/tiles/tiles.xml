@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="base.definition"
+		template="/WEB-INF/jsp/common/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/jsp/common/header.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/jsp/common/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/common/footer.jsp" />
+	</definition>
+
+	<definition name="main" extends="base.definition">
+		<put-attribute name="title" value="메인페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/main/main.jsp" />
+	</definition>
+	
+	<!-- 회원 관리 -->
+	<definition name="/member/listMember" extends="base.definition">
+		<put-attribute name="title" value="회원목록페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/member/listMember.jsp" />
+	</definition>
+	
+	<definition name="/member/memberForm" extends="base.definition">
+		<put-attribute name="title" value="회원등록페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/member/memberForm.jsp" />
+	</definition>
+    <definition name="/member/viewDetail" extends="base.definition">
+		<put-attribute name="title" value="회원상세페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/member/viewDetail.jsp" />
+	</definition>
+	
+	<!-- 게시판 기능 -->
+	<definition name="/board/listWrite" extends="base.definition">
+		<put-attribute name="title" value="글목록 페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/board/listWrite.jsp" />
+	</definition>
+	<definition name="/board/viewWrite" extends="base.definition">
+		<put-attribute name="title" value="글상세 페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/board/viewWrite.jsp" />
+	</definition>
+	<definition name="/board/writeForm" extends="base.definition">
+		<put-attribute name="title" value="글쓰기 페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/board/writeForm.jsp" />
+	</definition>
+	<definition name="/board/replyForm" extends="base.definition">
+		<put-attribute name="title" value="답변쓰기 페이지" />
+		<put-attribute name="body" value="/WEB-INF/jsp/board/replyForm.jsp" />
+	</definition>
+</tiles-definitions>
+
+

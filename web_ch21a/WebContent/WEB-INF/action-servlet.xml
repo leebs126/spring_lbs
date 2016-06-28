@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/ex5/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<bean id="tranController" class="com.spring.ex5.TranController">
+	    <property name="methodNameResolver">
+			<ref local="mNameResolver"/>
+		</property>
+		<property name="tranService" ref="tranService"/>
+	</bean>
+	
+	<bean id="mNameResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+		<property name="mappings">
+			<props>
+				<prop key="/test/addMember.do">addMember</prop>
+		   </props>
+		</property>
+	</bean>
+
+ 	<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	        <property name="mappings">
+				<props>
+				<prop key="/test/*.do">tranController</prop>
+				</props>
+	        </property>
+	</bean>
+</beans>

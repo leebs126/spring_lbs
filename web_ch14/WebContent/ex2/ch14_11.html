@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title> </title>
+<script type="text/javascript" src="../jquery/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+ function fn_process(){
+	 var value=$("#t_input").val();
+	$("#t_output").val(value);
+ }
+  
+</script>
+</head>
+<body>
+    <input type="text" id="t_input" /> 
+    <input type="button" value="입력하기" onClick="fn_process()" /><br><br>
+  <div>
+       결과:<br>
+     <input type="text" id="t_output"  disabled/>
+  </div> 
+</body>
+</html>

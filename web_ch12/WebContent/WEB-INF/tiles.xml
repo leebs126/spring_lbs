@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+ 
+    <definition name="mainLayout" template="/jsp/layout/layout.jsp">
+    <put-attribute name="title" value="쇼핑몰 메인 페이지_9" />
+    <put-attribute name="header" value="/jsp/common/header.jsp" />
+    <put-attribute name="side" value="/jsp/common/side.jsp" />
+    <put-attribute name="body" value="/jsp/main/main.jsp" />
+    <put-attribute name="footer" value="/jsp/common/footer.jsp" />
+    <put-attribute name="sticky_menu" value="/jsp/common/sticky_menu.jsp" />
+  </definition>
+  
+  <!--  <definition name="mainLayout" template="/layout.jsp">
+    <put-attribute name="title" value="타일즈 테스트 페이지" />
+    <put-attribute name="header" value="/header.jsp" />
+    <put-attribute name="side" value="/side.jsp" />
+    <put-attribute name="body" value="/test.jsp" />
+    <put-attribute name="footer" value="/footer.jsp" />
+  </definition>
+   -->
+  <definition name="goods.goods_search_list" extends="mainLayout">
+    <put-attribute name="title" value="상품 검색 페이지" />
+    <put-attribute name="body" value="/jsp/goods/goods_search_list.jsp" />
+  </definition>
+  
+  
+  <definition name="goods.goods_detail" extends="mainLayout">
+    <put-attribute name="title" value="상품 상세 페이지" />
+    <put-attribute name="body" value="/jsp/goods/goods_detail.jsp" />
+  </definition>  
+  
+  <!-- 회원 기능  -->
+	<definition name="member.member_join_page" extends="mainLayout">
+    <put-attribute name="title" value="회원 가입 페이지" />
+    <put-attribute name="body" value="/jsp/member/member_join.jsp" />
+  </definition> 
+  
+   	<definition name="member.member_login_page" extends="mainLayout">
+    <put-attribute name="title" value="로그인 페이지" />
+    <put-attribute name="body" value="/jsp/member/member_login.jsp" />
+  </definition>
+  
+  <!-- 카트 기능-->
+  <definition name="cart.my_cart_list" extends="mainLayout">
+    <put-attribute name="title" value="내 장바구니 정보" />
+    <put-attribute name="body" value="/jsp/cart/my_cart_list.jsp" />
+  </definition>  
+  
+  
+  <!-- 주문 기능-->
+  <definition name="order.order_goods" extends="mainLayout">
+    <put-attribute name="title" value="제품 주문 페이지" />
+    <put-attribute name="body" value="/jsp/order/order_goods.jsp" />
+  </definition>
+  
+  <definition name="order.order_goods_result" extends="mainLayout">
+    <put-attribute name="title" value="제품 주문 결과 페이지" />
+    <put-attribute name="body" value="/jsp/order/order_goods_result.jsp" />
+  </definition>
+</tiles-definitions>

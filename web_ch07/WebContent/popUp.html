@@ -1,0 +1,32 @@
+<html>
+  <head>
+  <script type="text/javascript">
+  function setPopUpStart(obj){
+	if(obj.checked==true){
+	//  alert("checked");
+   // ÄíÅ° ¼Ò¸ê½Ã±â
+	   var expireDate = new Date();
+	   expireDate.setMonth(expireDate.getMonth() + 1);
+
+	   //ÄíÅ°ÀúÀå
+	   document.cookie ="notShowPop=" +"true" + ";path=/; expires=" + expireDate.toGMTString();
+		window.close();
+
+	}
+	 
+  
+  }
+
+  </script>
+
+  </head>
+  <body>
+    ¾Ë¸² ÆË¾÷Ã¢ÀÔ´Ï´Ù.
+	<br><br><br><br><br><br><br>
+   <form>
+    <input type=checkbox onClick="setPopUpStart(this)" >¿À´Ã ´õÀÌ»ó ÆË¾÷Ã¢ ¶ç¿ìÁö ¾Ê±â   
+   </form>
+  </body>
+
+
+</html/>
