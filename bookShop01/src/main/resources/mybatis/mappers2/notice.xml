@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.notice">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="noticeResult" type="com.shop.ex1.notice.NoticeVO">
+		<result property="nId" column="nId" />
+		<result property="nTitle" column="nTitle" />
+		<result property="nContents" column="nContents" />
+		<result property="creDate" column="creDate" />
+		<result property="id" column="id" />
+	</resultMap>	
+
+	<select id="list_notice" resultMap="noticeResult"   >
+	    <![CDATA[
+			select * from t_Notice
+		]]>
+	</select>
+	
+</mapper>
