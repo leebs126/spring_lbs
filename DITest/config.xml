@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+         <!-- setter injection -->
+  	<bean id="memberService" class="com.spring.ex3.MemberServiceImpl">
+	    <property name="memberDao" ref="memberDao" />
+	</bean>
+	<bean  id="memberDao" class="com.spring.ex3.MemberDaoImpl"  />
+ </beans>
+ 
+ 

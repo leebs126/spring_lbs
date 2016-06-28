@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+         <!-- setter injection -->
+<!-- 	<bean id="testService" class="com.spring.ex1.TestServiceImpl">
+	    <property name="hello">
+	        <value>스프링 DI 테스트입니다.</value>
+	    </property>
+	</bean>
+ -->
+  
+	<bean id="testService1" class="com.spring.ex2.TestServiceImpl">
+	    <constructor-arg   value="스프링 DI 테스트입니다." />
+	</bean>
+
+
+    <bean id="testService2" class="com.spring.ex2.TestServiceImpl">
+	    <constructor-arg   value="스프링 DI 테스트입니다."  />
+	    <constructor-arg   value="hello"  />
+	</bean>
+ </beans>
