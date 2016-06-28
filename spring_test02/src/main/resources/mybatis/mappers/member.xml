@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memResult" type="com.spring.mytest02.member.vo.MemberBean">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="weight" column="weight" />
+		<result property="height" column="height" />
+		<result property="age" column="age" />
+	</resultMap>	
+
+	<select id="selectAllMemberList" resultMap="memResult"   >
+	    <![CDATA[
+			 select * from t_Member			
+		]]>
+	</select>
+
+
+	
+	  <select id="selectDynaMember" parameterType="memberBean" resultMap="memResult">
+    select * from t_member
+    <where>
+      <if test=" name!='' and name!=null">
+         name=#{name}
+      </if>
+      <if test=" age !=-1">
+        and age=#{age}
+      </if>
+    </where>
+  </select>
+	
+
+	
+  <insert id="insertMember"  parameterType="memberBean">
+  <![CDATA[
+    	insert into t_Member(id,name, height, weight, age)
+      	values(#{id},
+      	       #{name},
+      	       #{height},
+      	       #{weight},
+      	       #{age})
+   ]]>      
+  </insert>
+    
+  <insert id="insertMember2"  parameterType="HashMap">
+  <![CDATA[
+    	insert into t_Member(id,name, height, weight, age)
+      	values(#{id},
+      	       #{name},
+      	       #{height},
+      	       #{weight},
+      	       #{age})
+   ]]>      
+  </insert>
+  <update id="updateMember"  parameterType="memberBean">
+  <![CDATA[
+    	update Member
+    	set age=#{age}
+    	where
+    	id=#{id}
+   ]]>      
+  </update>  
+
+  <delete id="deleteMember"  parameterType="String">
+  <![CDATA[
+  	delete from t_Member
+  	where
+  	id=#{id}
+   ]]>      
+  </delete>  
+    
+</mapper>
