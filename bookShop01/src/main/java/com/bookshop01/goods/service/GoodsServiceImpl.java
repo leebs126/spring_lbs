@@ -45,6 +45,9 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsMap.put("goods", goodsBean);
 		ArrayList imageList =goodsDao.goodsDetailImage(_goods_id);
 		goodsMap.put("imageList", imageList);
+		
+		ArrayList reviewList =goodsDao.reviewList(_goods_id);
+		goodsMap.put("reviewList", reviewList);
 		return goodsMap;
 	}
 }

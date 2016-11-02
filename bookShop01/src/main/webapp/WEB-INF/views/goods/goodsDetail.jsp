@@ -77,6 +77,54 @@
 			jQuery('#layer').attr('style', 'visibility:hidden');
 		}
 	}
+	
+function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
+	
+	
+	var isLogOn=document.getElementById("isLogOn");
+	var loginState=isLogOn.value;
+	
+	//alert(loginState);
+	
+	 if(loginState=="false" ){
+		alert("로그인 후 주문이 가능합니다!!!");
+	} 
+	
+	
+		var total_price,final_total_price,_goods_qty;
+		//var cart_goods_qty=document.getElementById("cart_goods_qty");
+		
+		_order_goods_qty=1; //장바구니에 담긴 개수 만큼 주문한다.
+		var formObj=document.createElement("form");
+		var i_goods_id = document.createElement("input"); 
+	    var i_goods_title = document.createElement("input");
+	    var i_goods_sales_price=document.createElement("input");
+	    var i_fileName=document.createElement("input");
+	    var i_order_goods_qty=document.createElement("input");
+	    
+	    i_goods_id.name="goods_id";
+	    i_goods_title.name="goods_title";
+	    i_goods_sales_price.name="goods_sales_price";
+	    i_fileName.name="goods_fileName";
+	    i_order_goods_qty.name="order_goods_qty";
+	    
+	    i_goods_id.value=goods_id;
+	    i_order_goods_qty.value=_order_goods_qty;
+	    i_goods_title.value=goods_title;
+	    i_goods_sales_price.value=goods_sales_price;
+	    i_fileName.value=fileName;
+	    
+	    formObj.appendChild(i_goods_id);
+	    formObj.appendChild(i_goods_title);
+	    formObj.appendChild(i_goods_sales_price);
+	    formObj.appendChild(i_fileName);
+	    formObj.appendChild(i_order_goods_qty);
+
+	    document.body.appendChild(formObj); 
+	    formObj.method="post";
+	    formObj.action="/bookshop01/order/orderEachGoods.do";
+	    formObj.submit();
+	}	
 </script>
 </head>
 <body>
@@ -158,7 +206,7 @@
 			</tbody>
 		</table>
 		<ul>
-			<li><a class="buy" href="#">구매하기 </a></li>
+			<li><a class="buy" href="javascript:fn_order_each_goods('${goodsMap.goods.goods_id }','${goodsMap.goods.goods_title }','${goodsMap.goods.goods_sales_price}','${goodsMap.goods.goods_fileName}');">구매하기 </a></li>
 			<li><a class="cart" href="javascript:add_cart('${goodsMap.goods.goods_id }')">장바구니</a></li>
 			
 			<li><a class="wish" href="#">위시리스트</a></li>
@@ -205,6 +253,34 @@
 			</div>
 			<div class="tab_content" id="tab6">
 				<h4>리뷰</h4>
+				  <%-- <h1>글번호  작성자   글제목  작성일자<br>
+				<c:forEach var="review" items="${goodsMap.reviewList }">
+				    <p>${review.review_id }  
+				       ${review.member_id }  
+				       <a href="#"> ${review.review_title }</a>
+				       ${review.reg_date } 
+				    
+				    </p> <br>
+				</c:forEach>
+				<br><br>
+				</h1> --%>
+<center>				
+				<table border=1  >
+				  <tr>
+				    <td>글번호</td><td>작성자</td><td>글제목</td><td>작성일자</td>
+				  </tr>
+				  <c:forEach var="review" items="${goodsMap.reviewList }">
+				    <tr>
+				      <td>${review.review_id }</td>  
+				      <td>${review.member_id } </td>  
+				      <td><a href="#"> ${review.review_title }</a></td>
+				      <td>${review.reg_date }</td>
+				     </tr>
+				  </c:forEach>
+				</table>			
+				<br><br>
+				<input  type="button" value="리뷰쓰기" />
+</center>					
 			</div>
 		</div>
 	</div>
@@ -222,3 +298,4 @@
 </form>			
 </body>
 </html>
+<input type="hidden" name="isLogOn" id="isLogOn" value="${isLogOn}"/>

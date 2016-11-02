@@ -3,6 +3,7 @@ package com.bookshop01.admin.goods.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,10 +96,15 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	
 	@RequestMapping(value="/saveNewGoods.do" ,method={RequestMethod.POST})
 	public ModelAndView saveNewGoods(HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		String fileName=getFileName(request);
-		ModelAndView mav = new ModelAndView(fileName);
+		
+		String _goods_title=request.getParameter("goods_title");
+		String goods_title = URLDecoder.decode(_goods_title, "UTF-8") ;
+		
 		GoodsBean newGoodsBean=new GoodsBean();
 		bind(request,newGoodsBean);
+		String fileName=getFileName(request);
+		ModelAndView mav = new ModelAndView(fileName);
+		
 		HttpSession session=request.getSession();
 		session.setAttribute("newGoodsBean", newGoodsBean);
 		session.setAttribute("command", "add_new_goods");
@@ -109,6 +115,7 @@ public class AdminGoodsControllerImpl extends BaseController  implements AdminGo
 	
 	@RequestMapping(value="/addNewGoods.do" ,method={RequestMethod.POST})
 	public ModelAndView addNewGoods(HttpServletRequest request, HttpServletResponse response)  throws Exception {
+		
 		String fileName=getFileName(request);
 		ModelAndView mav = new ModelAndView(fileName);
 		HashMap newGoodsMap=new HashMap();

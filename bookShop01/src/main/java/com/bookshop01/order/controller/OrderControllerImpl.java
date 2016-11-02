@@ -29,16 +29,35 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 	
 	@RequestMapping(value="/orderEachGoods.do" ,method = RequestMethod.POST)
 	public ModelAndView myOrderGoods(HttpServletRequest request, HttpServletResponse response)  throws Exception{
+		//로그인 여부 체크
+		//이전에 로그인 상태인 경우는 주문과정 진행
+		//로그아웃 상태인 경우 로그인 화면으로 이동
+		OrderBean orderBean=new OrderBean();
+		bind(request,orderBean);
+		
+		HttpSession session=request.getSession();
+		session=request.getSession();
+		
+		Boolean isLogOn=(Boolean)session.getAttribute("isLogOn");
+		String isComeFrom=(String)session.getAttribute("isComeFrom");
+		
+		if(isLogOn==null || isLogOn==false){
+			session.setAttribute("orderInfo", orderBean);
+			session.setAttribute("isComeFrom", "/order/orderEachGoods.do");
+			return new ModelAndView("redirect:/member/loginForm.do");
+		}else if(isComeFrom!=null && isComeFrom.equals("/order/orderEachGoods.do")){
+			orderBean=(OrderBean)session.getAttribute("orderInfo");
+			session.removeAttribute("isComeFrom");
+		}
+		
+		
 		request.setCharacterEncoding("utf-8");
 		String fileName=getFileName(request);
 		ModelAndView mav = new ModelAndView(fileName);
-		OrderBean orderBean=new OrderBean();
-	
-		bind(request,orderBean);
+		
 		ArrayList my_order_list=new ArrayList<OrderBean>();
 		my_order_list.add(orderBean);
 
-		HttpSession session=request.getSession();
 		MemberBean memberBean=(MemberBean)session.getAttribute("member_info");
 		
 		session.setAttribute("my_order_list", my_order_list);

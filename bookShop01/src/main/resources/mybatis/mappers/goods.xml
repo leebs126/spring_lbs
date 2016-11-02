@@ -34,6 +34,17 @@
 	   <result property="image_id" column="image_id" />
 	   <result property="fileType" column="fileType" />
 	</resultMap>
+	
+	<resultMap id="reviewResult" type="com.bookshop01.goods.vo.ReviewBean">
+	   <result property="review_id" column="review_id" />
+	   <result property="member_id" column="member_id" />
+	   <result property="goods_id" column="goods_id" />
+	   <result property="review_pw" column="review_pw" />
+	   <result property="review_title" column="review_title" />
+	   <result property="review_content" column="review_content" />
+	   <result property="reg_date" column="reg_date" />
+	</resultMap>
+	
    
       <select id="listGoods" parameterType="String" resultMap="goodsResult"   >
         <![CDATA[
@@ -83,4 +94,11 @@
                                order by goods_creDate desc
 		]]>
 	</select>
+	
+
+<select id="reviewList" parameterType="String" resultMap="reviewResult"   >
+    select * from t_shoping_review
+    where
+    goods_id=#{goods_id}
+</select>	
 </mapper>

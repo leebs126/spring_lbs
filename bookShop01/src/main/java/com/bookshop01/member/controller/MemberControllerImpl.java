@@ -34,7 +34,15 @@ public class MemberControllerImpl  extends BaseController implements MemberContr
 			session=request.getSession();
 			session.setAttribute("isLogOn", new Boolean(true));
 			session.setAttribute("member_info",member_info);
-			mav.setViewName("redirect:/main/main.do");
+			
+			String isComeFrom=(String)session.getAttribute("isComeFrom");
+			if(isComeFrom!=null && isComeFrom.equals("/order/orderEachGoods.do")){
+				mav.setViewName("forward:"+isComeFrom);
+			}else{
+				mav.setViewName("redirect:/main/main.do");	
+			}
+			
+			
 			
 		}else{
 			String message="아이디나  비밀번호가 틀립니다. 다시 로그인해주세요";
