@@ -10,5 +10,4 @@ public interface GoodsDao {
 	public ArrayList goodsDetailImage(String goods_id) throws Exception;
 	public ArrayList keywordSearch(String keyword) throws Exception;
 	public ArrayList searchGoods(String searchWord) throws Exception;
-	public ArrayList reviewList(String goods_id) throws Exception;
 }

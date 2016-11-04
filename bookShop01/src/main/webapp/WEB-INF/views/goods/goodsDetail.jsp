@@ -253,34 +253,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			</div>
 			<div class="tab_content" id="tab6">
 				<h4>리뷰</h4>
-				  <%-- <h1>글번호  작성자   글제목  작성일자<br>
-				<c:forEach var="review" items="${goodsMap.reviewList }">
-				    <p>${review.review_id }  
-				       ${review.member_id }  
-				       <a href="#"> ${review.review_title }</a>
-				       ${review.reg_date } 
-				    
-				    </p> <br>
-				</c:forEach>
-				<br><br>
-				</h1> --%>
-<center>				
-				<table border=1  >
-				  <tr>
-				    <td>글번호</td><td>작성자</td><td>글제목</td><td>작성일자</td>
-				  </tr>
-				  <c:forEach var="review" items="${goodsMap.reviewList }">
-				    <tr>
-				      <td>${review.review_id }</td>  
-				      <td>${review.member_id } </td>  
-				      <td><a href="#"> ${review.review_title }</a></td>
-				      <td>${review.reg_date }</td>
-				     </tr>
-				  </c:forEach>
-				</table>			
-				<br><br>
-				<input  type="button" value="리뷰쓰기" />
-</center>					
+						
 			</div>
 		</div>
 	</div>

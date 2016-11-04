@@ -49,8 +49,4 @@ public class GoodsDaoImpl  implements GoodsDao{
 		return imageList;
 	}
 	
-	public ArrayList reviewList(String goods_id) throws Exception{
-		 ArrayList reviewList=(ArrayList)sqlSession.selectList("mapper.goods.reviewList",goods_id);
-			return reviewList;
-	}
 }
