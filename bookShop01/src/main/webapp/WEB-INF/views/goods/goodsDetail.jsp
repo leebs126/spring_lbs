@@ -4,7 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%
+     //치환 변수 선언합니다.
+      pageContext.setAttribute("crcn", "\r\n"); //Space, Enter
+      pageContext.setAttribute("br", "<br/>"); //br 태그
+%> 
 <html>
 <head>
 <style>
@@ -226,7 +230,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
 				<h4>책소개</h4>
-				<p>${goodsMap.goods.goods_intro}</p>
+				<p>${fn:replace(goodsMap.goods.goods_intro,crcn,br)}</p>
 				<c:forEach var="image" items="${goodsMap.imageList }">
 					<img width="400" height="400"
 						src="${pageContext.request.contextPath}/fileDownload.do?goods_id=${goodsMap.goods.goods_id}&fileName=${image.fileName}">
@@ -236,20 +240,20 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 				<h4>저자소개</h4>
 				<p>
 				<div class="writer">저자 : ${goodsMap.goods.goods_writer}</div>
-				${goodsMap.goods.goods_writer_intro }
+				${fn:replace(goodsMap.goods.goods_writer_intro,crcn,br) }
 				<p></p>
 			</div>
 			<div class="tab_content" id="tab3">
 				<h4>책목차</h4>
-				<p>${goodsMap.goods.goods_contents_order }</p>
+				<p>${fn:replace(goodsMap.goods.goods_contents_order,crcn,br)}</p>
 			</div>
 			<div class="tab_content" id="tab4">
 				<h4>출판사서평</h4>
-				<p>${goodsMap.goods.goods_publisher_comment }</p>
+				<p>${fn:replace(goodsMap.goods.goods_publisher_comment ,crcn,br)}</p>
 			</div>
 			<div class="tab_content" id="tab5">
 				<h4>추천사</h4>
-				<p>${goodsMap.goods.goods_recommendation }</p>
+				<p>${fn:replace(goodsMap.goods.goods_recommendation,crcn,br) }</p>
 			</div>
 			<div class="tab_content" id="tab6">
 				<h4>리뷰</h4>

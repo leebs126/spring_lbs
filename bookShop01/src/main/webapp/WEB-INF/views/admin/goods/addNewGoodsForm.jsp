@@ -63,7 +63,7 @@
 			
 			<tr>
 				<td >제품출판일</td>
-				<td><input  name="goods_published_date" value="2015.05.05"  type="text" size="40" /></td>
+				<td><input  name="goods_published_date"  type="date" size="40" /></td>
 			</tr>
 			
 			<tr>
@@ -81,7 +81,7 @@
 			</tr>
 			<tr>
 				<td >제품 도착 예정일</td>
-				<td><input name="goods_delivery_date" value="2015.06.05"  type="text" size="40" /></td>
+				<td><input name="goods_delivery_date"  type="date" size="40" /></td>
 			</tr>
 			
 			<tr>
@@ -109,7 +109,7 @@
 				<table>	
 				 <tr>
 					<td >책목차</td>
-					<td><textarea  rows="100" cols="80" name="goods_contents_order"><pre> </pre></textarea></td>
+					<td><textarea  rows="100" cols="80" name="goods_contents_order"></textarea></td>
 				</tr>
 				</table>	
 			</DIV>
@@ -119,7 +119,7 @@
 				 <table>
   				 <tr>
 					<td>제품 저자 소개</td>
-					<td><textarea  rows="100" cols="80" name="goods_writer_intro"><pre> </pre></textarea></td>
+					<td><textarea  rows="100" cols="80" name="goods_writer_intro"></textarea></td>
 			    </tr>
 			   </table>
 				</P>
@@ -130,7 +130,7 @@
 				<table>
 					<tr>
 						<td >제품소개</td>
-						<td><textarea  rows="100" cols="80" name="goods_intro"><pre> </pre></textarea></td>
+						<td><textarea  rows="100" cols="80" name="goods_intro"></textarea></td>
 				    </tr>
 			    </table>
 				</P>
@@ -141,7 +141,7 @@
 				<table>
 				 <tr>
 					<td>출판사 제품 평가</td>
-					<td><textarea  rows="100" cols="80" name="goods_publisher_comment"><pre> </pre></textarea></td>
+					<td><textarea  rows="100" cols="80" name="goods_publisher_comment"></textarea></td>
 			    </tr>
 			</table>
 				</P>
@@ -152,7 +152,7 @@
 				 <table>
 					 <tr>
 					   <td>추천사</td>
-					    <td><textarea  rows="100" cols="80" name="goods_recommendation"><pre> </pre></textarea></td>
+					    <td><textarea  rows="100" cols="80" name="goods_recommendation"></textarea></td>
 				    </tr>
 			    </table>
 				</p>
